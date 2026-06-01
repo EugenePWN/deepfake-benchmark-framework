@@ -1,0 +1,15 @@
+# Минимальный набор для headless-запуска FaceFusion из бенчмарка (без Gradio UI).
+# Обычно достаточно upstream: pip install -r facefusion/requirements.txt
+# в отдельном conda/venv (см. README). Этот файл — для воспроизводимых пинов / CI.
+# torch==2.0.1+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
+numpy==2.2.6
+onnx==1.19.1
+onnxruntime==1.23.2
+onnxruntime-gpu
+opencv-python==4.12.0.88
+psutil==7.1.3
+tqdm==4.67.1
+scipy==1.16.3
+
+PyYAML
+pydantic
