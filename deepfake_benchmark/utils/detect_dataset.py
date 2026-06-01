@@ -42,10 +42,10 @@ logger = logging.getLogger(__name__)
 
 # Архитектура определяется по имени (можно переопределить через --arch)
 _ARCH_BY_NAME = {
-    "xception":    "xception",
+    "xception":     "xception",
     "efficientnet": "efficientnet",
-    "effnet":      "efficientnet",
-    "f3net":       "f3net",
+    "effnet":       "efficientnet",
+    "f3net":        "f3net",
 }
 
 _ARCH_DEFAULTS = {
@@ -225,7 +225,7 @@ def _compute_metrics(gt, preds, probs, threshold):
     bacc = (rec+spec)/2
     denom = math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
     mcc  = (tp*tn-fp*fn)/denom if denom else 0.0
-    # AUC-ROC (трапеции)
+    # AUC-ROC
     pairs = sorted(zip(probs, gt), key=lambda x: -x[0])
     n_pos = sum(gt); n_neg = n - n_pos
     auc = tpr = fpr = prev_tpr = prev_fpr = 0.0

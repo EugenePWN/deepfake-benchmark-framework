@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-"""
-Скачивает официальный репозиторий FaceFusion в ./facefusion (корень этого проекта).
-
-Бенчмарк не включает код FaceFusion в пакет — он ожидает каталог facefusion/ рядом с deepfake_benchmark/.
-Новый пользователь один раз клонирует репозиторий этим скриптом или вручную.
-
-Использование:
-  poetry run python scripts/setup_facefusion.py
-  poetry run python scripts/setup_facefusion.py --ref 3.0.0
-  poetry run python scripts/setup_facefusion.py --install-deps --python C:/path/to/conda/envs/facefusion/python.exe
-"""
 from __future__ import annotations
 
 import argparse

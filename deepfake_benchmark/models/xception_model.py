@@ -1,8 +1,3 @@
-"""
-Xception Architecture for DeepFake Detection
-Paper: "Xception: Deep Learning with Depthwise Separable Convolutions" (Chollet, 2017)
-"""
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

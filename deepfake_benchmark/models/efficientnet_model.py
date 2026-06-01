@@ -1,17 +1,3 @@
-"""
-EfficientNet-B4 для детекции дипфейков.
-
-Используем pretrained EfficientNet-B4 из torchvision с заменой головы классификатора.
-Стратегия обучения: сначала обучаем только голову (freeze backbone),
-затем размораживаем и fine-tune весь backbone с меньшим lr.
-
-Почему EfficientNet-B4:
-  - Лучший ImageNet pretrained среди B0-B7 по соотношению точность/скорость
-  - Compound scaling (глубина + ширина + разрешение) → лучше улавливает
-    мелкие артефакты face-swap на разных масштабах
-  - 19M параметров vs 22M у Xception → быстрее обучается
-  - Входное разрешение 380×380 → больше деталей чем у Xception (299×299)
-"""
 from __future__ import annotations
 
 from typing import Optional, Tuple

@@ -33,7 +33,7 @@ class DetectorMetrics:
 
     # Threshold-free
     auc_roc:    float = 0.0
-    auc_pr:     float = 0.0     # Average Precision (PR-AUC)
+    auc_pr:     float = 0.0    
 
     # При threshold_used
     accuracy:          float = 0.0
@@ -42,8 +42,8 @@ class DetectorMetrics:
     f1:                float = 0.0
     f1_weighted:       float = 0.0
     precision:         float = 0.0
-    recall:            float = 0.0   # sensitivity / TPR
-    specificity:       float = 0.0   # TNR
+    recall:            float = 0.0   
+    specificity:       float = 0.0  
     fpr:               float = 0.0
     fnr:               float = 0.0
 

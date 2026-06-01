@@ -369,13 +369,6 @@ class GeneratorConfig(BaseModel):
     include_meta:            bool = True
     output_structure:        Literal["flat", "preset_model"] = "flat"
 
-    # ── FaceFusion пути — заполняются автоматически ───────────────────────────
-    # facefusion_dir:    None → ищем по стандартным местам (_find_facefusion_dir)
-    # facefusion_python: None → ищем conda-окружение, fallback = sys.executable
-    #
-    # Явно указывать нужно только если FaceFusion установлен нестандартно.
-    # setup_facefusion.py клонирует FaceFusion в <project_root>/facefusion/ —
-    # это дефолтное место, поэтому после setup_facefusion.py пути не нужны.
     facefusion_dir:    Optional[Path] = None
     facefusion_python: Optional[str]  = None
 
@@ -404,7 +397,7 @@ class GeneratorConfig(BaseModel):
             found = _find_facefusion_python()
             if found:
                 self.facefusion_python = found
-            # else: остаётся None → DatasetGenerator использует sys.executable
+            # else: 
 
         return self
 
@@ -461,8 +454,8 @@ class OutputConfig(BaseModel):
     skip_dataset_build: bool = False
 
     # Только для structure="flat_eval"
-    output_dir:    Optional[Path] = None   # куда класть flat датасет
-    n_per_class:   Optional[int]  = None   # лимит на класс
+    output_dir:    Optional[Path] = None  
+    n_per_class:   Optional[int]  = None  
     copy_real:     bool           = True
     real_source:   Literal["targets", "loader"] = "targets"
 

@@ -6,12 +6,6 @@ from typing import Any, Dict, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-# Допустимые роли — единый источник правды для всего проекта.
-# Используется в SampleItem, pairing.py и benchmark.py.
-#   "source"    — донор лица (откуда берём внешность)
-#   "target"    — целевое изображение до свопа (куда вставляем)
-#   "generated" — результат свопа (фейк, выход FaceFusion)
-#   None        — роль не определена; изображение считается и source, и target
 SampleRole = Optional[Literal["source", "target", "generated"]]
 
 
@@ -46,16 +40,10 @@ class SampleItem(BaseModel):
 
     generator: str = "none"
     source_id: Optional[str] = None
-    # ДОБАВЛЕНО: target_id — нужен для трассировки пары source→target→generated
     target_id: Optional[str] = None
-    # ИСПРАВЛЕНО: строгий Literal вместо Optional[str] — предотвращает опечатки вроде role="targett"
     role: SampleRole = None
     dataset: str
-    # ДОБАВЛЕНО: split — указывает принадлежность к train/val/test после разбивки датасета
     split: Optional[Literal["train", "val", "test"]] = None
-    # ИСПРАВЛЕНО: поле называется "meta" (не "metadata") — это имя используется во всём проекте:
-    # dataset_generator.py передаёт meta=res.get("meta", {}), а оригинальный types.py
-    # объявлял поле как "metadata" — несоответствие приводило к молчаливому игнорированию метаданных.
     meta: Dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("media_path", mode="before")

@@ -24,9 +24,6 @@ _Pair = Tuple[SampleItem, SampleItem]
 def _resolve_facefusion_python(facefusion_python: Optional[Any]) -> str:
     """
     Разрешает GeneratorConfig.facefusion_python в путь к исполняемому python.
-
-    Частая ошибка на Windows: указывают корень conda-окружения (папку), а не python.exe —
-    тогда CreateProcess даёт WinError 5 (отказ в доступе).
     """
     if facefusion_python is None:
         return sys.executable
@@ -329,7 +326,6 @@ class DatasetGenerator:
                 "execution_provider": provider,
             }
 
-            # Per-model постобработка, иначе — default плана
             pp = (entry.post_process
                   if not entry.post_process.is_identity
                   else plan.default_post_process)

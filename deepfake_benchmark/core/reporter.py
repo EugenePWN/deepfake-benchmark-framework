@@ -17,9 +17,9 @@ class Reporter:
     Формирует итоговые отчёты из EvaluationReport.
 
     Поддерживаемые форматы:
-      json  — metrics.json   (всегда создаётся)
+      json  — metrics.json  
       csv   — metrics.csv
-      html  — report.html    (читаемый отчёт с таблицами)
+      html  — report.html 
       all   — все три формата
 
     При save_plots=True дополнительно создаёт:
@@ -66,7 +66,6 @@ class Reporter:
         out_dir = self.results_root / run_name
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        # JSON всегда
         report.save_json(out_dir / "metrics.json")
 
         if self.output_format in ("csv", "all"):
