@@ -60,7 +60,6 @@ data:
 ```
 
 Поддерживаемые датасеты: `celeba_hq`, `ffhq`, `lfw`, `utkface`.
-Требуется `pip install datasets`.
 
 ---
 
@@ -162,17 +161,17 @@ mode: full
 
 ## 5. Обучение детектора
 
-После `mode: generate` запускай обучение отдельным скриптом:
+После `mode: generate` запускай обучение отдельным скриптом. Скрипты обучения детекторов расположены в папке `scripts`
 
 ```bash
 # Xception (с нуля)
-python train_xception.py --data_dir data/deepfake_dataset --epochs 60 --amp
+python scripts/train_xception.py --data_dir data/deepfake_dataset --epochs 60 --amp
 
 # EfficientNet-B4 (ImageNet pretrained, двухфазное)
-python train_efficientnet.py --data_dir data/deepfake_dataset --epochs 45 --amp
+python scripts/train_efficientnet.py --data_dir data/deepfake_dataset --epochs 45 --amp
 
 # F3Net (с нуля, warmup 5 эпох)
-python train_f3net.py --data_dir data/deepfake_dataset --epochs 50 --amp
+python scripts/train_f3net.py --data_dir data/deepfake_dataset --epochs 50 --amp
 ```
 
 Результат: `checkpoints_*/best.pth` + `results.json` (с optimal_threshold).
@@ -207,9 +206,6 @@ RuntimeError: Error(s) in loading state_dict
 ```
 Проверь что `architecture:` в конфиге совпадает с моделью checkpoint.
 
-**AUC ≈ 0.5 на новом датасете:**
-Pipeline specificity — детектор выучил артефакты конкретного генератора.
-Решение: SBI-аугментация или mixed-source training.
 
 **Папки eval_datasets не существуют в mode=full:**
 Это нормально. Dry-run покажет `[pending]` — папки создадутся на шаге generate.
